@@ -1,37 +1,35 @@
-// delete books
-
 const list = document.querySelector('#book-list ul');
+const forms = document.forms;
 
+// delete books
 list.addEventListener('click', (e) => {
-        if (e.target.className == 'delete') {
-            const li = e.target.parent;
-            li.parentNode.removeChild(li);
+  if(e.target.className == 'delete'){
+    const li = e.target.parentElement;
+    li.parentNode.removeChild(li);
+  }
+});
 
-        }
-    });
+// add books
+const addForm = forms['add-book'];
+addForm.addEventListener('submit', function(e){
+  e.preventDefault();
 
-// add book-list
-const addForm = document.forms['add-books'];
+  // create elements
+  const value = addForm.querySelector('input[type="text"]').value;
+  const li = document.createElement('li');
+  const bookName = document.createElement('span');
+  const deleteBtn = document.createElement('span');
 
-addForm.addEventListener('submit',function(e){
-    e.preventDefault();
-    const value = addForm.querySelector('input[type="text"]').value;
-    console.log(value);
+  // add text content
+  bookName.textContent = value;
+  deleteBtn.textContent = 'delete';
 
+  // add classes
+  bookName.classList.add('name');
+  deleteBtn.classList.add('delete');
 
-// create elements
-const li = documtent.createElement('li');
-const bookName = document.createElement('span');
-const bookBnt = document.createElement('span');
-
-//add content
-deleteBnt.textContent='delete';
-bookName.textContent= value;
-
-
-// appent to document
-li.appendChild(bookName);
-li.appendChild(deleteBnt);
-list.appendChild();
-
+  // append to DOM
+  li.appendChild(bookName);
+  li.appendChild(deleteBtn);
+  list.appendChild(li);
 });

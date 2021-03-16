@@ -1,9 +1,18 @@
 const list = document.querySelector('#book-list ul');
 
 list.addEventListener('click', function(e){
-    if(e.target.className == 'delete'){
+    if(e.target.className=='delete'){
         const li = e.target.parent
         li.parentNode.removeChild(li)
 
     }  
-})
+});
+
+// add book-list
+const addForm = document.forms['add-books'];
+
+addForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    const value = addForm.querySelector('input[type="text"]').value;
+    console.log(value);
+});
